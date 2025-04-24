@@ -1,0 +1,9 @@
+services:
+  figma-mcp:
+    build: .
+    container_name: figma-mcp-server
+    ports:
+      - "3001:3001"
+    environment:
+      FIGMA_API_KEY: ${FIGMA_PERSONAL_ACCESS_TOKEN}
+    restart: unless-stopped
