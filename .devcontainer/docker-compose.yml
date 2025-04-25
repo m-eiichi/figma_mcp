@@ -1,6 +1,10 @@
 services:
+  react-app:
+    build: ./react-app
+    volumes:
+      - ./shared_data:/app/public/shared_data
   figma-mcp:
-    build: .
+    build: ./figma-mcp
     container_name: figma-mcp-server
     volumes:
       - ./shared_data:/app/shared_data
@@ -9,11 +13,6 @@ services:
     environment:
       FIGMA_API_KEY: ${FIGMA_PERSONAL_ACCESS_TOKEN}
     restart: unless-stopped
-
-  react-app:
-    build: ./react-app
-    volumes:
-      - ./shared_data:/app/public/shared_data
 # volumes:
 #   shared_data:
 
