@@ -2,8 +2,41 @@ services:
   figma-mcp:
     build: .
     container_name: figma-mcp-server
+    volumes:
+      - ./shared_data:/app/shared_data
     ports:
       - "3001:3001"
     environment:
       FIGMA_API_KEY: ${FIGMA_PERSONAL_ACCESS_TOKEN}
     restart: unless-stopped
+
+  react-app:
+    build: ./react-app
+    volumes:
+      - ./shared_data:/app/public/shared_data
+# volumes:
+#   shared_data:
+
+# services:
+#   figma-mcp:
+#     build: ./figma-mcp
+#     volumes:
+#       - ./shared_data:/app/shared_data
+#     # その他の設定...
+
+#   react-app:
+#     build: ./react-app
+#     volumes:
+#       - ./shared_data:/app/public/shared_data
+#     # その他の設定...
+
+# volumes:
+#   shared_data:
+# project-root/
+# ├── docker-compose.yml
+# ├── shared_data/               ← 🔁 ここに入れたファイルが両方のコンテナに共有される
+# │   └── example.png
+# ├── react-app/
+# │   └── Dockerfile
+# └── figma-mcp/
+# └── Dockerfile
